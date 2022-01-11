@@ -1,0 +1,62 @@
+.App {
+  text-align: center;
+}
+* {
+  text-decoration: none;
+  color: rgb(97, 3, 3);
+}
+.homePage {
+  background-image: linear-gradient(
+    -25deg,
+    rgba(129, 129, 243, 0.534),
+    rgba(231, 105, 105, 0.884)
+  );
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+a {
+  text-decoration: none;
+}
+.AddPage {
+  background-image: linear-gradient(
+    -25deg,
+    rgb(158, 92, 92),
+    rgba(236, 129, 129, 0.979)
+  );
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.AddPage > * {
+  margin: 25px;
+}
+.AddPage > * > * {
+  margin: 12px;
+}
+.homePage > * {
+  margin: 25px;
+}
+.room {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  border-radius: 50%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.roomPage {
+  background-image: linear-gradient(
+    -25deg,
+    rgb(158, 92, 92),
+    rgba(236, 129, 129, 0.979)
+  );
+  min-height: 100vh;
+}
