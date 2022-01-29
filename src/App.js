@@ -11,7 +11,7 @@ import Room from './component/Room';
 
 function App() {
   const titleAddPage = "Smart House"
-  const titleHomePage = "Smart-House"
+  const titleHomePage = "SMART HOUSE"
   const [roomList, setroomList] = useState([])
   const [roomType1, setroomType1] = useState('')
   const [roomName1, setroomName1] = useState('')

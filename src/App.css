@@ -5,12 +5,27 @@
   text-decoration: none;
   color: rgb(97, 3, 3);
 }
+
+.title {
+  font-size: 70px;
+  color: rgb(255, 136, 0);
+  font-weight: bold;
+  letter-spacing: 6px;
+}
+
 .homePage {
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     -25deg,
     rgba(129, 129, 243, 0.534),
     rgba(231, 105, 105, 0.884)
-  );
+  ); */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)),
+    url("../src/SmartHome.jpg");
+  background-color: #ffe5cc;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -59,4 +74,85 @@ a {
     rgba(236, 129, 129, 0.979)
   );
   min-height: 100vh;
+}
+
+.btn1 {
+  background-color: rgb(218, 111, 11);
+  z-index: 5;
+  position: relative;
+  padding: 1.4rem 4.2rem;
+  padding-right: 3.1rem;
+  font-size: 1.4rem;
+  color: var(--inv);
+  letter-spacing: 1.05rem;
+  text-transform: uppercase;
+  transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);
+  cursor: pointer;
+  user-select: none;
+  color: black;
+  font-size: 20px;
+}
+
+.btn1:before,
+.btn1:after {
+  content: "";
+  position: absolute;
+  transition: inherit;
+  z-index: -1;
+}
+
+.btn1:hover {
+  color: var(--def);
+  transition-delay: 0.5s;
+}
+
+.btn1:hover:before {
+  transition-delay: 0s;
+}
+
+.btn1:hover:after {
+  background: var(--inv);
+  transition-delay: 0.35s;
+}
+
+.btn1:before,
+.btn1:after {
+  top: 0;
+  width: 0;
+  height: 100%;
+}
+
+.btn1:before {
+  right: 0;
+  border: 1px solid var(--inv);
+  border-left: 0;
+  border-right: 0;
+}
+
+.btn1:after {
+  left: 0;
+}
+
+.btn1:hover:before,
+.btn1:hover:after {
+  width: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  --def: #96b7c4;
+  --inv: #fff;
+  height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(-25deg, #616161 0%, #96b7c4 100%);
+}
+
+html {
+  font-size: 12px;
+  font-family: "Playfair Display", serif;
 }

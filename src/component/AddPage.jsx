@@ -90,9 +90,9 @@ export default function AddPage(props) {
                     <input onChange={e=>colorPickedFunc(e.target.value)} type="color"/>
                 </div>
 
-                <div type="button" onClick={()=>isValid()}>
+                <button className="btn" onClick={()=>isValid()}>
                     CREATE ROOM!
-                </div>
+                </button>
 
                 <div type="button" onClick={addroom}>
                     

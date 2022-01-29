@@ -16,7 +16,7 @@ export default function HomePage(props) {
     }
     return (
         <div className="homePage">
-            <Title/>
+            <div className="title"> SMART HOUSE</div>
             <div>
                 <Consumer>
                     {(value) =>{
