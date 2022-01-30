@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Consumer } from '../ContextApi'
-import AddItem from './AddItem'
 import Title from './Title'
 import { useEffect } from 'react'
 import {useState} from 'react'
