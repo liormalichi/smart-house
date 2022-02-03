@@ -2,28 +2,56 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Consumer } from '../ContextApi'
 import Title from './Title'
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import {useState} from 'react'
 import Items from './Items'
+import bathroom from "../images/bathroom.jpg"
+import bedroom from "../images/bedroom.jpg"
+import kitchen from "../images/kitchen.jpg"
+import livingRoom from "../images/livingRoom.jpg"
 
+ 
 
-
-export default function Room(props) {
-
+export default function Room(props){
     
     let [clickCounter,setclickCounter] = useState(0)
     let [clickCounter1,setclickCounter1] = useState(0)
     const [itemType, setitemType] = useState('choose')
     const currList = props.rooms
     const currIndex = props.roomIndex
-
     const ItemList = currList[currIndex][4]
     let currItemIndex = ItemList.length
     const [currItemIndex1, setcurrItemIndex] = useState(currItemIndex)
+    const [img, setImg] = useState("")
 
-
+    // useEffect(() => {
+    //     const type = props.type
+    //         if(type == "bathroom")
+    //             setImg(bathroom)
+    //         if(type == "bedroom")
+    //         setImg(bedroom)
+    //         if(type == "kitchen")
+    //             setImg(kitchen)
+    //         if(type == "livingRoom")
+    //             setImg(livingRoom)    
+       
+    // },);
+    useLayoutEffect(() => {
+        const type = props.type
+        if(type == "bathroom")
+            setImg(bathroom)
+        if(type == "bedroom")
+            setImg(bedroom)
+        if(type == "kitchen")
+            setImg(kitchen)
+        if(type == "livingRoom")
+            setImg(livingRoom)  
+    }, []);
+    
+      
+ 
     //let currItemIndex = ItemList.length
-    //const currItem = ItemList[ItemList.length-1]
+    // const currItem = ItemList[ItemList.length-1]
     const whichItem = (item) => {
         setitemType(item)
     }
@@ -37,8 +65,6 @@ export default function Room(props) {
         return false
     }
     
-
-
     const addAndToggle = () => {        
         //only up to 5 items are allowed
         if (currItemIndex1<5){ 
@@ -74,10 +100,7 @@ export default function Room(props) {
         }
         else{
             alert("you can add up to 5 items")
-        } 
-        
-        
-        
+        }        
     }
 
     const destroyItems = () => {
@@ -106,16 +129,8 @@ export default function Room(props) {
             }
     }
 
-
-
-    
-
-
-    
-
     return (
-        <div className='roomPage'>
-            
+        <div className='roomPage'style={{backgroundImage:`url(${img})`}}>             
             <Title/>
             <div>
                 room name:{props.name}
