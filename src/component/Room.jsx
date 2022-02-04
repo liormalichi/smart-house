@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Consumer } from '../ContextApi'
 import Title from './Title'
 import { useLayoutEffect } from 'react'
-import {useState} from 'react'
+import {useState , useEffect} from 'react'
 import Items from './Items'
 import bathroom from "../images/bathroom.jpg"
 import bedroom from "../images/bedroom.jpg"
@@ -13,29 +13,15 @@ import livingRoom from "../images/livingRoom.jpg"
  
 
 export default function Room(props){
-    
-    let [clickCounter,setclickCounter] = useState(0)
-    let [clickCounter1,setclickCounter1] = useState(0)
+    const nav = useNavigate()
     const [itemType, setitemType] = useState('choose')
-    const currList = props.rooms
+    const [currList, setCurrList] = useState(props.rooms)
     const currIndex = props.roomIndex
     const ItemList = currList[currIndex][4]
     let currItemIndex = ItemList.length
     const [currItemIndex1, setcurrItemIndex] = useState(currItemIndex)
     const [img, setImg] = useState("")
 
-    // useEffect(() => {
-    //     const type = props.type
-    //         if(type == "bathroom")
-    //             setImg(bathroom)
-    //         if(type == "bedroom")
-    //         setImg(bedroom)
-    //         if(type == "kitchen")
-    //             setImg(kitchen)
-    //         if(type == "livingRoom")
-    //             setImg(livingRoom)    
-       
-    // },);
     useLayoutEffect(() => {
         const type = props.type
         if(type == "bathroom")
@@ -48,10 +34,6 @@ export default function Room(props){
             setImg(livingRoom)  
     }, []);
     
-      
- 
-    //let currItemIndex = ItemList.length
-    // const currItem = ItemList[ItemList.length-1]
     const whichItem = (item) => {
         setitemType(item)
     }
@@ -68,30 +50,22 @@ export default function Room(props){
     const addAndToggle = () => {        
         //only up to 5 items are allowed
         if (currItemIndex1<5){ 
-            let currList = props.rooms
             const currIndex = props.roomIndex             
             let alreadyHaveStereohave = haveStereo(currList[currIndex][4]) //only one sterio is allowed
             if(itemType =="stereoSystem" && alreadyHaveStereohave){
                 alert("cant have more than 1 stereo system")
             }
             else{
-                if (itemType != "choose"){
-                    if(clickCounter==1){
-                                            
-                        currList[currIndex][4] = [...(currList[currIndex][4]), [itemType,currItemIndex1,false]]
+                if (itemType != "choose"){   
+                        currList[currIndex][4] = [...(currList[currIndex][4]), [itemType,currItemIndex1,false,"#FF0000"]]
                         setcurrItemIndex(currItemIndex1+1)
-                        props.setItems(currList)           
-                        currList = props.rooms               
+                        const curr = currList
+                        props.setItems(curr)           
+                        setCurrList(props.rooms)               
             
                         const x = document.getElementById("myDiv");
                         x.style.display = "none"
-                        setclickCounter(0)
-        
-                    }
-                    else{
-                        setclickCounter(1)
-                    }
-                    
+                  
                 }
                 else{
                     alert("must pick an item")
@@ -105,6 +79,7 @@ export default function Room(props){
 
     const destroyItems = () => {
         document.getElementById("items").remove()
+        nav('/')
 
     }
     
@@ -131,65 +106,47 @@ export default function Room(props){
 
     return (
         <div className='roomPage'style={{backgroundImage:`url(${img})`}}>             
-            <Title/>
-            <div>
-                room name:{props.name}
+            <div class="room-container">
+                {/* <Title/> */}
+                <div className='roomName'>
+                    {props.name} - {props.type}
+                </div>
+                <button className='btn1 btnAddItem' onClick={()=>toggle()}>
+                    Add Item
+                </button>
+                
+                <div id="myDiv" style={{display:"none"}}>
+                
+                    <div id="bathroom">
+                        <select onChange={e=> whichItem(e.target.value)}>
+                            <option value="choose"> choose item</option>
+                            <option value="stereoSystem"> stereo system</option>
+                            <option value="airConditioner"> air conditioner</option>
+                            <option value="light"> light</option>
+                            <option value="boiler"> boiler</option>
+                        </select>
+                
+                    </div>
+                    <div id="notBathroom">
+                        <select onChange={e=> whichItem(e.target.value)}>
+                            <option value="choose"> choose item</option>
+                            <option value="stereoSystem"> stereo system</option>
+                            <option value="airConditioner"> air conditioner</option>
+                            <option value="light"> light</option>
+                        </select>
+                
+                    </div>
+                    <button className='btn1 btnAdd' onClick={()=>addAndToggle()}>
+                            Add
+                        </button>
+                </div>
+                <Items items={currList} index={currIndex} itemIndex={currItemIndex1}/>
             </div>
-            <div>
-                room type:{props.type}
-            </div>
-            <button onClick={()=>toggle()}> 
-                Add Item
+
+            <button className='btn1 btnHome' onClick={destroyItems} to='/'>
+                home
             </button>
             
-            <div id="myDiv" style={{display:"none"}}>
-              
-                <div id="bathroom">
-                    <select onChange={e=> whichItem(e.target.value)}>
-                        <option value="choose"> choose item</option>
-                        <option value="stereoSystem"> stereo system</option>
-                        <option value="airConditioner"> air conditioner</option>
-                        <option value="light"> light</option>
-                        <option value="boiler"> boiler</option>                        
-                    </select>
-                    <button onClick={()=>addAndToggle()}>
-                        CLICK TWICE :)
-                    </button> 
-                </div>
-
-                <div id="notBathroom">
-                    <select onChange={e=> whichItem(e.target.value)}>
-                        <option value="choose"> choose item</option>
-                        <option value="stereoSystem"> stereo system</option>
-                        <option value="airConditioner"> air conditioner</option>
-                        <option value="light"> light</option>
-                    </select>
-                    <button onClick={()=>addAndToggle()}>
-                        CLICK TWICE :)
-
-                    </button>                
-                </div>
-                           
-            </div>    
-  
-            <Items items={currList} index={currIndex} itemIndex={currItemIndex1}/>                   
-
-
-            <Link onClick={destroyItems} to='/'>
-                home
-            </Link>
-
-
-            <div>
-                .השינוי בצבע של הכפתורים עובד פשוט צריך לרדנר שוב 
-            </div>
-            <div>
-            כמו ללחוץ על הוסף מוצר וכשתנסה לבחור מוצר חדש תראה שהצבע משתנה וגם נשמר ביציאה מהעמוד 
-
-            </div>
-            <div>
-                לא הצלחתי לגרום לשינוי בצבע להופיע ישר לצערי     
-            </div>
         </div>
 
     )

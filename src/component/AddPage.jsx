@@ -1,7 +1,7 @@
 import React from 'react'
 import Title from './Title';
-import { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom'
+import { useState } from 'react';
+import {useNavigate} from 'react-router-dom'
 import HomePage from './HomePage';
 
 
@@ -9,7 +9,7 @@ export default function AddPage(props) {
     
     //rooms will be at the form of [[[room0name], [room0type], [room0color], 0, [item1, item2]], [[room1name], [room1type], [room1color],1 [item1, item2]]]
 
-
+    const nav = useNavigate()
     const [pickedRoom, setpickedRoom] = useState(false);
     const [roomType, setroomType] = useState('choose');
     const [pickedName, setpickedName] = useState(false);
@@ -65,20 +65,23 @@ export default function AddPage(props) {
     const addroom = () =>{
         props.roomList1(roomList)
         console.log(howManyRoomsCreated)
-
         props.setCreated(howManyRoomsCreated)
+        nav('/')
+
        
     }
      
+
     return (
         <div className='AddPage'>
             <Title/>
             <section className='col-12'>
+            
                 <select onChange={e=> didPickedRoom(e.target.value)} className=''>
                     <option value="choose">Choose a room</option>
                     <option value="livingRoom">Living room</option>
                     <option value="bathroom">Bathroom</option>
-                    <option value="kitchen ">Kitchen </option>
+                    <option value="kitchen">Kitchen </option>
                     <option value="bedroom">Bedroom</option>
                 </select>                
                 <div className=''>
@@ -90,13 +93,14 @@ export default function AddPage(props) {
                     <input onChange={e=>colorPickedFunc(e.target.value)} type="color"/>
                 </div>
 
-                <button className="btn" onClick={()=>isValid()}>
+                <button className="btn1 btnSmaller" onClick={()=>isValid()}>
                     CREATE ROOM!
                 </button>
 
-                <div type="button" onClick={addroom}>
-                    
-                    <Link to='/'>FINISH!</Link>
+                <div class="toHomeContainer">
+                    <button className="btn1 btnSmaller" type="button" onClick={addroom}>
+                        FINISH!
+                    </button>
                 </div>
             </section>
         </div>

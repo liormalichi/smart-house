@@ -4,10 +4,10 @@ import '../App.css';
 
 export default function Title(props) {
     return (
-        <div className="title">
+        <div  className="title">
             <Consumer>
                 {(value)=>{
-                    return <h1> {value.title}</h1>
+                    return <h1 style={{fontSize:"70px"}}> {value.title}</h1>
                 }}
             </Consumer>           
         </div>

@@ -3,7 +3,7 @@
 }
 * {
   text-decoration: none;
-  color: rgb(97, 3, 3);
+  color: rgb(221, 92, 6);
 }
 
 .title {
@@ -13,6 +13,19 @@
   letter-spacing: 6px;
 }
 
+.roomName {
+  letter-spacing: 2px;
+  font-size: 40px;
+}
+
+.addItemButton {
+  background-color: #fff;
+  color: black;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
 .homePage {
   /* background-image: linear-gradient(
     -25deg,
@@ -20,7 +33,7 @@
     rgba(231, 105, 105, 0.884)
   ); */
   background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)),
-    url("../src/SmartHome.jpg");
+    url("../src/SmartHomeOptimaize.jpg");
   background-color: #ffe5cc;
   background-position: center;
   background-repeat: no-repeat;
@@ -41,6 +54,10 @@ a {
     rgb(158, 92, 92),
     rgba(236, 129, 129, 0.979)
   );
+  background-image: url("../src/images/house.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -74,6 +91,39 @@ a {
     rgba(236, 129, 129, 0.979)
   ); */
   min-height: 100vh;
+  position: relative;
+}
+
+.room-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* #1,
+#2,
+#3,
+#4,
+#5 {
+  color: black !important;
+} */
+.btnAddItem {
+  background-color: rgba(58, 104, 231, 0.637) !important;
+  transform: scale(0.7);
+}
+
+.btnAdd {
+  background-color: rgba(85, 126, 240, 0.521) !important;
+  border: 0px;
+  transform: scale(0.4);
+}
+
+button.btn1.btnHome {
+  position: absolute;
+  transform: translateX(-50%);
+  bottom: 10px;
+  background-color: rgba(218, 111, 11, 0.514) !important;
 }
 
 .btn1 {
@@ -89,8 +139,9 @@ a {
   transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);
   cursor: pointer;
   user-select: none;
-  color: black;
+  color: black !important;
   font-size: 20px;
+  border: 0px;
 }
 
 .btn1:before,
@@ -99,6 +150,14 @@ a {
   position: absolute;
   transition: inherit;
   z-index: -1;
+}
+
+.btnSmaller {
+  transform: scale(0.6);
+}
+.btnAddItem:hover,
+.btnAdd:hover {
+  color: rgba(17, 46, 126, 0.589) !important;
 }
 
 .btn1:hover {
@@ -145,7 +204,7 @@ a {
 }
 
 body {
-  --def: #96b7c4;
+  --def: #e6772d;
   --inv: #fff;
   height: 100vh;
   width: 100%;
@@ -155,4 +214,12 @@ body {
 html {
   font-size: 12px;
   font-family: "Playfair Display", serif;
+}
+
+.grid-container {
+  display: grid;
+}
+
+.grid-container--fill {
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
 }
