@@ -30,7 +30,7 @@ function App() {
   const setroomIndexAndItems1 = (howManyCreated) => {
     if(howManyCreated>0){
       for (let i=1; i<=howManyCreated; i++){
-        setroomIndexAndItems(roomIndexAndItems.push([]))
+        setroomIndexAndItems([...roomIndexAndItems,[]])
       }
       console.log(roomIndexAndItems)
 
